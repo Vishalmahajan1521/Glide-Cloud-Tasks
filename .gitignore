@@ -1,0 +1,17 @@
+# Virtual environments
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Vector DB local storage
+qdrant_data/
+
+# Logs
+*.log
