@@ -32,9 +32,9 @@ The Patent Search Tool is an intelligent semantic search system that enables use
 
 The system is designed with a weighted scoring framework for different patent sections, though currently all chunks are processed as "abstract" since the dataset (Patents.csv) contains only Title and Abstract columns:
 
-- **Abstract**: Weight = 0.7 (currently used - summary of invention)
-- **Claims**: Weight = 1.0 (defined but not used - would be highest priority if full patent text available)
-- **Description**: Weight = 0.4 (defined but not used - would be standard priority if full patent text available)
+- **Abstract**: Weight = 0.7
+- **Claims**: Weight = 1.0
+- **Description**: Weight = 0.4
 
 **Note**: The weight system is implemented in the codebase and can be activated when ingesting full patent documents (PDFs or API data) that contain Claims and Description sections. Currently, when ingesting from CSV data, all chunks are marked as "abstract" type.
 
