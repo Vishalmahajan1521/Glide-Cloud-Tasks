@@ -8,12 +8,12 @@ API_URL = "http://127.0.0.1:8000/api/v1"
 
 # Page config
 st.set_page_config(
-    page_title="Patent Search Tool",
+    page_title="AI/ML Patent Search Tool",
     page_icon="🔍",
     layout="wide"
 )
 
-st.title("🔍 Patent Search Tool")
+st.title("🔍 AI/ML Patent Search Tool")
 st.markdown("---")
 
 # Sidebar for filters
@@ -22,7 +22,7 @@ st.sidebar.header("🔧 Filters")
 # Search query
 query = st.text_input(
     "Enter search query:",
-    placeholder="e.g., battery thermal management, cooling system",
+    placeholder="e.g., transformer architecture, medical diagnosis using ai",
     key="search_query"
 )
 
@@ -46,13 +46,13 @@ jurisdictions = st.sidebar.multiselect(
 
 assignees = st.sidebar.text_input(
     "Assignee (comma-separated)",
-    placeholder="e.g., Samsung SDI, LG",
+    placeholder="e.g., Google, Microsoft, IBM",
     key="assignee_filter"
 )
 
 topic = st.sidebar.selectbox(
     "Topic",
-    options=["All", "thermal_management", "ai_algorithms", "renewable_energy"],  # Add more as needed
+    options=["All", "ml_healthcare", "Natural Language Processing", "Deep Learning", "Computer Vision"],  # Add more as needed
     key="topic_filter"
 )
 
@@ -66,7 +66,7 @@ filing_year_range = st.sidebar.slider(
 
 patent_classes = st.sidebar.text_input(
     "Patent Class (comma-separated)",
-    placeholder="e.g., H01M, B60L",
+    placeholder="e.g., G06N, G16H",
     key="patent_class_filter"
 )
 

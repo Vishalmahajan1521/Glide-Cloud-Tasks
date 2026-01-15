@@ -176,8 +176,16 @@ class TestIngestService:
         mock_split_sections
     ):
         """Test successful ingestion from text"""
-        mock_split_sections.return_value = {"abstract": "Abstract text"}
-        chunks = [{"text": "chunk1", "chunk_type": "abstract", "section_priority": 0.7, "chunk_index": 0}]
+        mock_split_sections.return_value = {
+            "abstract": "Abstract text",
+            "description": "Description text",
+            "claim": "Claim text",
+        }
+        chunks = [
+            {"text": "chunk1", "chunk_type": "abstract", "section_priority": 0.7, "chunk_index": 0},
+            {"text": "chunk2", "chunk_type": "description", "section_priority": 0.4, "chunk_index": 1},
+            {"text": "chunk3", "chunk_type": "claim", "section_priority": 1.0, "chunk_index": 2},
+        ]
         mock_create_chunks.return_value = chunks
         mock_embedding_model.embed_documents.return_value = [[0.1] * 768]
         
@@ -200,11 +208,6 @@ class TestIngestService:
         
         assert result["status"] == "success"
         assert result["patent_id"] == "US12345678"
-        
-        # Verify chunk_type was overridden to "abstract"
-        upsert_call = mock_store_instance.upsert_chunks.call_args
-        chunks_passed = upsert_call[1]["chunks"]
-        assert all(chunk["chunk_type"] == "abstract" for chunk in chunks_passed)
     
     @patch('app.services.ingest_service.split_into_sections')
     @patch('app.services.ingest_service.create_chunks')

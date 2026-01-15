@@ -93,10 +93,6 @@ class IngestService:
             sections = split_into_sections(text)
             chunks = create_chunks(sections, text)
 
-            # Override chunk_type to "abstract" since we're only using title + abstract
-            for chunk in chunks:
-                chunk["chunk_type"] = "abstract"
-
             if not chunks:
                 return {
                     "status": "skipped",
