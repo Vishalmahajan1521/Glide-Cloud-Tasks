@@ -23,20 +23,20 @@ The Patent Search Tool is an intelligent semantic search system that enables use
   - Filing Year Range
   - Patent Class
   - Topic
-- **Intelligent Chunking**: Patents are segmented into different sections (claims, abstract, description) for more precise matching
-- **Weighted Search Results**: Different sections are weighted differently based on their importance
+- **Intelligent Chunking**: Patents are segmented into chunks using sliding window technique for efficient vector search
+- **Text Processing**: Currently processes Title and Abstract from patent data
 - **RESTful API**: FastAPI backend with well-defined endpoints
 - **Interactive UI**: Streamlit-based web interface for easy searching
 
 ## Uniqueness (Weights)
 
-The system uses weighted scoring for different patent sections to prioritize more important content:
+The system is designed with a weighted scoring framework for different patent sections, though currently all chunks are processed as "abstract" since the dataset (Patents.csv) contains only Title and Abstract columns:
 
-- **Claims**: Weight = 1.0 (highest priority - most legally significant)
-- **Abstract**: Weight = 0.7 (high priority - summary of invention)
-- **Description**: Weight = 0.4 (standard priority - detailed description)
+- **Abstract**: Weight = 0.7 (currently used - summary of invention)
+- **Claims**: Weight = 1.0 (defined but not used - would be highest priority if full patent text available)
+- **Description**: Weight = 0.4 (defined but not used - would be standard priority if full patent text available)
 
-This weighting ensures that matches in patent claims are ranked higher than matches in descriptions, providing more relevant and legally significant results.
+**Note**: The weight system is implemented in the codebase and can be activated when ingesting full patent documents (PDFs or API data) that contain Claims and Description sections. Currently, when ingesting from CSV data, all chunks are marked as "abstract" type.
 
 ## How to Run
 
